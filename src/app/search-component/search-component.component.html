@@ -9,6 +9,11 @@
           </form>
       </div>
       <div class="col-9">
+          <div *ngIf="isRepeat">
+            <div class="alert alert-danger" role="alert">
+              <strong>Oh algo ha pasado!</strong> Ciudad Repetida
+            </div>
+          </div>
           <div *ngIf="city">
             <div class="card" style="padding: 1rem;">
               <div class="card text-center" >
@@ -26,6 +31,7 @@
               </div>
             </div>
           </div>
+
     </div>
   </div>
   <div class="row">

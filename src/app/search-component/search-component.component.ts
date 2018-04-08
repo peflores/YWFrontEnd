@@ -11,31 +11,40 @@ export class SearchComponentComponent implements OnInit {
   isNotEmpty: boolean = false;
   city : City;
   followingCity: City[] = [];
+  isRepeat: boolean = false;
 
   constructor(private weatherSrevice: WeatherServiceService) { }
 
   ngOnInit() {}
 
   followCity(city: City): void {
-    var index = this.followingCity.indexOf(city, 0);
-    if(index > -1) {
-      console.log("objeto repetido");
-    } else {
-      console.log(this.followingCity.push(city));
-      this.isNotEmpty = true;
+    this.isRepeat = false;
+    for(let cityFollow of this.followingCity) {
+      if(cityFollow.lon === city.lon &&
+          cityFollow.lat === city.lat){
+          this.isRepeat = true;
+      }
+    }
+    if(!this.isRepeat) {
+      this.weatherSrevice.addCity(city).subscribe(serverCity =>
+      this.followingCity.push(serverCity));
     }
   }
 
   removeCandidate(): void{
     this.city = null;
+    this.isRepeat = false;
   }
+
   searchListCity(cityName: String): void{
     if (!cityName) { return; }
+    this.isRepeat = false;
     this.weatherSrevice.getCitys(cityName).subscribe(data => {
       if(data.query.count>0) {
         var item = data.query.results.channel.item;
-        this.city =  new City(item.title,item.lat,item.long,item.description.replace("<![CDATA[", "").replace("]]>", ""),
-        item.condition.date, item.condition.temp,item.condition.text);
+        this.city =  new City(null, null, item.title, item.lat, item.long, item.description,
+        item.condition.date, item.condition.temp, item.condition.text);
+
       } else {
          this.city = null;
       }
