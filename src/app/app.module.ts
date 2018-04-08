@@ -9,10 +9,11 @@ import { SearchComponentComponent } from './search-component/search-component.co
 import { WeatherServiceService } from './weather-service.service';
 import { AppBootstrapModule } from './app-bootstrap/app-bootstrap.module';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { Url } from './url';
 @NgModule({
   imports:      [ BrowserModule, FormsModule, HttpClientModule, AppBootstrapModule,AngularFontAwesomeModule],
   declarations: [ AppComponent, HelloComponent, SearchComponentComponent, ShowComponentComponent ],
   bootstrap:    [ AppComponent ],
-  providers: [WeatherServiceService]
+  providers: [WeatherServiceService, Url]
 })
 export class AppModule { }

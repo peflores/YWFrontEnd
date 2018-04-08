@@ -15,7 +15,9 @@ export class SearchComponentComponent implements OnInit {
 
   constructor(private weatherSrevice: WeatherServiceService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+  }
 
   followCity(city: City): void {
     this.isRepeat = false;
@@ -36,7 +38,7 @@ export class SearchComponentComponent implements OnInit {
     this.isRepeat = false;
   }
 
-  searchListCity(cityName: String): void{
+  searchListCity(cityName: string): void{
     if (!cityName) { return; }
     this.isRepeat = false;
     this.weatherSrevice.getCitys(cityName).subscribe(data => {
@@ -44,7 +46,6 @@ export class SearchComponentComponent implements OnInit {
         var item = data.query.results.channel.item;
         this.city =  new City(null, null, item.title, item.lat, item.long, item.description,
         item.condition.date, item.condition.temp, item.condition.text);
-
       } else {
          this.city = null;
       }

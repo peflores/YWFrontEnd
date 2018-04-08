@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { City } from './city';
+import { Url } from './url';
 
 
 const httpOptions = {
@@ -20,13 +21,14 @@ export class WeatherServiceService {
 
   private endWhere = ")";
 
-  constructor( private http: HttpClient) { }
+  constructor( private http: HttpClient, private url: Url) { }
 
-  getCitys(name: String): Observable<any> {
-    return this.http.get(`${this.weatherUrl}${this.weatherWhere}='${name}'${this.endWhere}`);
+  getCitys(cityName: string): Observable<any> {
+    return this.http.get(this.url.getUrlYahooApi(cityName));
   }
 
   addCity(city: City): Observable<City> {
-    return this.http.post<City>(this.URL_SERVER + '/addCity', city,httpOptions);
+    return this.http.post<City>(this.url.getUrlAddLocalServer(), city,httpOptions);
   }
+
 }
