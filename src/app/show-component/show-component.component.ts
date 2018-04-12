@@ -16,9 +16,7 @@ export class ShowComponentComponent implements OnInit {
   ngOnInit() {
     this.followingCity = this.weatherService.getAllCitys();
     this.weatherService.loadAllCitys();
-
     this.weatherService.startPollingToServer();
-
     console.log('fin ngOnInit');
   }
 
@@ -26,10 +24,7 @@ export class ShowComponentComponent implements OnInit {
     console.log('init ngDoCheck');
     this.weatherService.refreshCitys();
   }
-  ngAfterViewInit(){
-    console.log('init ngAfterViewInit');
-    //this.weatherService.refreshCitys();
-  }
+
   ngOnDestroy(){
     this.weatherService.stopPollingToServer();
   }
