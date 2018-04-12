@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherServiceService } from '../weather-service.service';
 import { City } from '../city';
+import { Observable, BehaviorSubject, Subject } from 'rxjs/Rx';
 @Component({
   selector: 'app-search-component',
   templateUrl: './search-component.component.html',
@@ -8,47 +9,31 @@ import { City } from '../city';
 })
 export class SearchComponentComponent implements OnInit {
 
-  isNotEmpty: boolean = false;
-  city : City;
-  followingCity: City[] = [];
+  city$ : Observable<City>;
+
   isRepeat: boolean = false;
 
-  constructor(private weatherSrevice: WeatherServiceService) { }
+  constructor(private weatherService: WeatherServiceService) { }
+
+  addCity(city: City): void {
+    this.isRepeat = this.weatherService.isRepeat(city);
+
+    if(!this.isRepeat) {
+      this.weatherService.clearFindCity();
+      this.weatherService.addCity(city);
+    }
+  }
+
+  clearFindCity(){
+    this.weatherService.clearFindCity();
+  }
 
   ngOnInit() {
-
+    this.city$ = this.weatherService.getFindCity();
   }
 
-  followCity(city: City): void {
-    this.isRepeat = false;
-    for(let cityFollow of this.followingCity) {
-      if(cityFollow.lon === city.lon &&
-          cityFollow.lat === city.lat){
-          this.isRepeat = true;
-      }
-    }
-    if(!this.isRepeat) {
-      this.weatherSrevice.addCity(city).subscribe(serverCity =>
-      this.followingCity.push(serverCity));
-    }
-  }
-
-  removeCandidate(): void{
-    this.city = null;
-    this.isRepeat = false;
-  }
-
-  searchListCity(cityName: string): void{
+  findCity(cityName: string): void {
     if (!cityName) { return; }
-    this.isRepeat = false;
-    this.weatherSrevice.getCitys(cityName).subscribe(data => {
-      if(data.query.count>0) {
-        var item = data.query.results.channel.item;
-        this.city =  new City(null, null, item.title, item.lat, item.long, item.description,
-        item.condition.date, item.condition.temp, item.condition.text);
-      } else {
-         this.city = null;
-      }
-    });
+    this.weatherService.findCity(cityName);
   }
 }

@@ -1,15 +1,13 @@
 export class City {
 
-
   constructor(public cityId: string,
-              public idUser: string,
-              public title: string,
-              public lat: string,
-              public lon: string,
-              public description: string,
-              public date: string,
-              public temp: string,
-              public text: string
-              ) {}
-
+  public date: string,
+  public description: string,
+  public idUser: string,
+  public lat: string,
+  public lon: string,
+  public temp: string,
+  public text: string,
+  public title: string,
+  public temperature: string){}
 }

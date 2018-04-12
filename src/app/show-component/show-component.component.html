@@ -1,8 +1,7 @@
 <section class="jumbotron" style="padding: 1rem;" >
-    <div *ngIf="isNotEmpty">
         <div class="container">
             <div class="card-deck">
-                <div   *ngFor="let followCity of followingCity">
+                <div   *ngFor="let followCity of followingCity | async">
                     <div class="card column-break-inside:void">
                         <div class="col-md-3">
                             <div class="card w-20" style="width: 15rem;">
@@ -14,13 +13,10 @@
                               <div class="card-text">
                                 <ul class="list-group list-group-flush mt-4">
                                   <li class="list-group-item" style="font-size:small"><strong>Condition</strong>: {{followCity.text}}</li>
-                                  <li class="list-group-item" style="font-size:small"><strong>Temp</strong>: {{followCity.temp}}</li>
+                                  <li class="list-group-item" style="font-size:small"><strong>Temp</strong>: {{followCity.temp}} {{followCity.temperature}}</li>
                                 </ul>
                               </div>
                               <div class="d-flex justify-content-center align-items-center">
-                                <button class="btn btn-outline-primary" >
-                                  <fa  name="far fa-check-circle" size="lg" ></fa>
-                                </button>
                                 <button class="btn btn-outline-danger" >
                                   <fa  name="far fa-times-circle" size="lg" ></fa>
                                 </button>
@@ -32,6 +28,5 @@
                 </div>
             </div>
         </div>
-    </div>
 </section>
 

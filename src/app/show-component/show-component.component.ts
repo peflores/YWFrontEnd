@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { WeatherServiceService } from '../weather-service.service';
 import { City } from '../city';
+import { Observable, BehaviorSubject, Subject } from 'rxjs/Rx';
 @Component({
   selector: 'app-show-component',
   templateUrl: './show-component.component.html',
@@ -7,19 +9,28 @@ import { City } from '../city';
 })
 export class ShowComponentComponent implements OnInit {
 
-  isNotEmpty: boolean = false;
-  city : City;
-  @Input() followingCity: City[] = [];
+  public followingCity: Observable<City[]>;
 
-  constructor() { }
+  constructor(private weatherService: WeatherServiceService) { }
 
   ngOnInit() {
+    this.followingCity = this.weatherService.getAllCitys();
+    this.weatherService.loadAllCitys();
 
+    this.weatherService.startPollingToServer();
+
+    console.log('fin ngOnInit');
   }
 
-  ngDoCheck(){
-    if(this.followingCity.length > 0){
-      this.isNotEmpty = true;
-    }
+  ngDoCheck() {
+    console.log('init ngDoCheck');
+    this.weatherService.refreshCitys();
+  }
+  ngAfterViewInit(){
+    console.log('init ngAfterViewInit');
+    //this.weatherService.refreshCitys();
+  }
+  ngOnDestroy(){
+    this.weatherService.stopPollingToServer();
   }
 }
