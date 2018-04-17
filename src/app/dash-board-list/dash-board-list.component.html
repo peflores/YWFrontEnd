@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col">
+    <div>
+      <h4 class="d-flex align-item-left">Dashboard<a  (click)="addBoard()" target="_blank"><i target="_blank" class="fa fa-plus-circle"></i></a></h4>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <ul class="nav nav-tabs">
+      <div   *ngFor="let board of boards | async">
+        <li class="nav-item" style="background-color:#dad4d4;font-size:20px;"><a (click)="setCurrentBoard(board)"><i class="fa fa-list-alt"></i>{{board.boardName}}</a></li>
+      </div>
+    </ul>
+  </div>
+</div>

@@ -1,3 +1,18 @@
+<nav class="navbar navbar-light navbar-expand-md bg-danger navigation-clean-search">
+  <div class="container"><a class="navbar-brand text-white" href="#" style="padding-left:0rem;font-size:36px;">RedBee Weather</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"></button>
+    <div class="collapse navbar-collapse" id="navcol-1">
+      <form class="form-inline mr-auto" target="_self">
+        <div class="form-group align-items-end align-content-end" style="/*padding-left:0rem;*/margin-left:11rem;">
+          <input #cityName class="form-control form-control-lg search-field" type="search" placeholder="Search" autofocus="" id="search-field" style="color:rgb(255,255,255);/*padding-right:20rem;*//*padding-left:11rem;*/margin-left:9rem;">
+          <button class="btn btn-light" type="button"  (click)="findCity(cityName.value);">
+            <i class="fa fa-search"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</nav>
+<!--
 <div class="container">
   <div class="row">
       <div class="col-3">
@@ -38,3 +53,4 @@
     <app-show-component ></app-show-component>
   </div>
 </div>
+-->

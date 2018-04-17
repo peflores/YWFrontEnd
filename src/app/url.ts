@@ -12,18 +12,32 @@ export class Url {
 
   private addUrl: string = "/addCity";
 
+  private addBoardUrl: string = "/addBoard";
+
+  private allBoardUrl: string = "/allBoards";
+
   private allCityUrl: string = "/allCity";
 
   getUrlYahooApi(cityName: string) {
     return `${this.weatherUrl}${this.weatherWhere}='${cityName}'${this.endWhere}`;
   }
 
-  getUrlAddLocalServer() {
-    return `${this.URL_SERVER}${this.addUrl}`;
+  getUrlAllBoard() {
+    return `${this.URL_SERVER}${this.allBoardUrl}`;
+  }
+  getUrlToAddBoard() {
+    return `${this.URL_SERVER}${this.addBoardUrl}`;
+  }
+  getUrlToAddCity(idBoard: string) {
+    return `${this.URL_SERVER}/${idBoard}${this.addUrl}`;
   }
 
-  getUrlAllCitys() {
-    return `${this.URL_SERVER}${this.allCityUrl}`;
+  getUrlAllCitys(idBoard: string) {
+    return `${this.URL_SERVER}/${idBoard}${this.allCityUrl}`;
+  }
+
+  getUrlDeleteCityBoard(idBoard: string, idCity: string) {
+    return `${this.URL_SERVER}/${idBoard}/${idCity}`;
   }
 
 }

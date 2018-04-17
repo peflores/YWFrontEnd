@@ -1,0 +1,22 @@
+<div *ngIf="isRepeat">
+  <div class="alert alert-danger" role="alert">
+    <strong>Oh algo ha pasado!</strong> Ciudad Repetida
+  </div>
+</div>
+<div *ngIf="city$ | async as city">
+  <div class="card" style="padding: 1rem;">
+    <div class="card text-center" >
+      <div class="card-body">
+        <h6 class="card-text">{{city.title}}</h6>
+        <div class="d-flex justify-content-center align-items-center">
+          <button class="btn btn-outline-primary" (click)="addCity(city);" >
+            <fa name="far fa-check-circle"></fa>
+          </button>
+          <button class="btn btn-outline-danger" (click)="clearFindCity();">
+            <fa name="far fa-times-circle"></fa>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

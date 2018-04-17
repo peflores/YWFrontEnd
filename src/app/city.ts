@@ -1,6 +1,7 @@
 export class City {
 
-  constructor(public cityId: string,
+  constructor(
+  public cityId: string,
   public date: string,
   public description: string,
   public idUser: string,
@@ -9,5 +10,5 @@ export class City {
   public temp: string,
   public text: string,
   public title: string,
-  public temperature: string){}
+  public unit: string){}
 }

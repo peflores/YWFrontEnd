@@ -1,17 +1,72 @@
-<header>
-  <div class="navbar navbar-dark bg-danger">
-    <div class="container d-flex justify-content-between">
-      <p class="navbar-brand d-flex align-items-center">
-        <!--<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>-->
-        <strong><hello name="{{ name }}"></hello></strong>
-      </p>
-
+<body style="background-color:#dad4d4;">
+<app-search-component></app-search-component>
+  <div style="background-color:#dad4d4;">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6 col-lg-2">
+          <div class="row">
+            <div class="col-lg-10">
+              <!--<h1>Board</h1>-->
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-10">
+              <dash-board-list></dash-board-list>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-10">
+          <div class="row">
+            <div class="col">
+              <div class="row border-bottom border-primary">
+                <div class="col">
+                  <div><h2>DashBoard</h2></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <search-result-component></search-result-component>
+          </div>
+          <div class="row">
+            <app-show-component></app-show-component>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</header>
-
-<body style="background-color:#e9ecef">
-  <section class="jumbotron" style="padding: 3rem;" >
-    <app-search-component></app-search-component>
-  </section>
 </body>
+<!--
+<body style="background-color:#dad4d4;">
+    <app-search-component></app-search-component>
+    <div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 align-self-center">
+            <div class="col">
+              <div class="row border-bottom border-primary">
+                <div class="col">
+                  <div><h2>DashBoard</h2></div>
+                </div>
+              </div>
+            </div>
+            <div class="row ">
+              <div class="col-lg-9 offset-lg-2">
+                  <div class="row">
+                    <search-result-component></search-result-component>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+          <div class="row">
+            <div class="col-md-6 col-lg-1 align-self-center">
+              <dash-board-list></dash-board-list>
+            </div>
+            <div class="col-md-6 col-lg-11 align-self-center">
+              <app-show-component></app-show-component>
+            </div>
+          </div>
+      </div>
+    </div>
+</body>-->
